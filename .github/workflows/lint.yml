@@ -26,9 +26,9 @@ jobs:
           npm install @commitlint/cli
           npm install @commitlint/config-conventional
 
-      - name: Validate current commit (last commit) with commitlint
+      - name: Validate push commits with commitlint
         if: github.event_name == 'push'
-        run: npx commitlint --last --verbose
+        run: npx commitlint --from ${{ github.event.push.before }} --to ${{ github.event.push.after }} --verbose
 
       - name: Validate PR commits with commitlint
         if: github.event_name == 'pull_request'
