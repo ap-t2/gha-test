@@ -1,4 +1,4 @@
-name: commitlint
+name: lint
 
 on: [push, pull_request]
 
@@ -6,16 +6,20 @@ jobs:
   commitlint:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
       - name: Print versions
         run: |
           git --version
           node --version
           npm --version
           npx commitlint --version
+
       - name: Install commitlint
         run: |
           npm install @commitlint/cli
