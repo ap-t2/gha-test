@@ -13,6 +13,7 @@ jobs:
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
+
       - name: Print versions
         run: |
           git --version
